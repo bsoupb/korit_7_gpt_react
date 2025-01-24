@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 // import App2 from './study/App2';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from 'react-query';
 // import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import RouterDom from './components/RouterDom/RouterDom';
 // import App3 from './study/App3';
@@ -21,6 +23,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import App14 from './study/App14';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient();
 
 root.render(
     // <RouterDom>
@@ -29,9 +32,13 @@ root.render(
     //     <Route path={"/c"} element={ <h1>C페이지</h1> } ></Route>
     //     <Route path={"/d"} element={ <h1>D페이지</h1> } ></Route>
     // </RouterDom>
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </QueryClientProvider>
+    </RecoilRoot>
 );
 
 // root.render(<App />);
